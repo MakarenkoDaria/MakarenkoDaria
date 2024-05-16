@@ -1,0 +1,3 @@
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME = N'Direction' AND TABLE_NAME = 'Students')
+ALTER TABLE dbo.Students drop column Direction;
+go
