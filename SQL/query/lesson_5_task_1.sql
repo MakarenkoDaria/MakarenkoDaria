@@ -6,8 +6,7 @@ case
 	then 'Да'
 	when s.Exam_score < d.Min_score
 	then 'Нет'
-	when s.Exam_score is null
-	then null
+	else null
 end as Зачислен
 from dbo.Students s
 join dbo.Direction d 
