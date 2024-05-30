@@ -3,9 +3,10 @@ CREATE OR ALTER PROC SP_direction_students
 AS 
   
 BEGIN
-    IF @code_id <> 1
+
+	IF NOT EXISTS (SELECT 1 FROM Direction WHERE code_id = @code_id) 
 	RAISERROR('Некорректный код направления', 16, 1);
-	
+
     SELECT s.Name+ ' ' + s.Surname AS Student_name, d.Name_direction
     FROM dbo.Students s 
 	join dbo.Direction d
@@ -17,3 +18,5 @@ END;
 
 --exec SP_direction_students 1
 --exec SP_direction_students 2
+--exec SP_direction_students 3
+--exec SP_direction_students 6
