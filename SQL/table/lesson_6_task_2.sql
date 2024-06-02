@@ -1,0 +1,12 @@
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME = N'
+capacity' AND TABLE_NAME = 'Direction')
+ALTER TABLE dbo.Direction
+ADD capacity int NOT NULL DEFAULT(0);
+
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME = N'admission_is_over' AND TABLE_NAME = 'Direction')
+ALTER TABLE dbo.Direction
+ADD admission_is_over bit NOT NULL DEFAULT(0);
+go
+
+--SELECT * FROM Direction
