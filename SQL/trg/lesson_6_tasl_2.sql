@@ -9,12 +9,14 @@ BEGIN
      JOIN 
      (
        SELECT COUNT(user_id) as cnt, s.code_id
-       FROM dbo.Students s
+       FROM dbo.Students s 
 	   JOIN dbo.Direction d
 	   ON d.code_id = s.code_id
 	   WHERE s.Exam_score > d.min_score
 	   GROUP BY s.code_id
      ) s
      ON d.code_id = s.code_id AND s.cnt >= d.capacity
+	 WHERE EXISTS (SELECT 1 FROM Inserted i WHERE i.code_id = d.code_id)
+	 
 END  
 GO 
